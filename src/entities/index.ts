@@ -1,1 +1,2 @@
-export * from './client.entity';
+export * from './movie.entity';
+export * from './user.entity';

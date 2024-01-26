@@ -1,6 +1,6 @@
+import { DataSource, DataSourceOptions } from 'typeorm';
 import 'reflect-metadata';
 require('dotenv').config();
-import { DataSource, DataSourceOptions } from 'typeorm';
 
 import * as entities from './entities';
 const entitiesList = Object.values(entities);
