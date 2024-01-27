@@ -3,28 +3,28 @@ import * as express from 'express';
 import validationMiddleware from '../middlewares/validation.middleware';
 import { authentication } from '../middlewares/authentication.middleware';
 import { authorization } from '../middlewares/authorization.middleware';
-import { UserController } from '../controllers/user.controller';
+import { AuthController } from '../controllers/auth.controller';
 
 import { RoleEnum } from '../enums';
 
-import { RegisterUserDTO } from '../dto/user.dto';
+import { LoginDTO } from '../dto/auth.dto';
 
 const Router = express.Router();
 
 Router.post(
-  '/users/register',
-  validationMiddleware(RegisterUserDTO),
+  '/auth/login',
+  validationMiddleware(LoginDTO),
   //   authentication,
   //   authorization([RoleEnum.USER, RoleEnum.ADMIN]),
-  UserController.registerUser,
+  AuthController.login,
 );
 
 Router.get(
-  '/users',
+  '/auth/profile',
   //   validationMiddleware(DTO),
   authentication,
-  authorization([RoleEnum.ADMIN]),
-  UserController.getUsers,
+  authorization([RoleEnum.USER, RoleEnum.ADMIN]),
+  AuthController.getProfile,
 );
 
 export = Router;

@@ -1,4 +1,4 @@
-import { UserRoleEnum } from '../enums';
+import { RoleEnum } from '../enums';
 
 export interface IUser {
   id: string;
@@ -6,7 +6,7 @@ export interface IUser {
   lastname: string;
   email: string;
   password?: string | null;
-  role: UserRoleEnum;
+  role: RoleEnum;
   created_at: Date;
   updated_at: Date;
   deleted_at: Date | null;

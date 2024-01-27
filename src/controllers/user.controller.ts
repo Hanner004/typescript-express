@@ -2,11 +2,11 @@ import { Request, Response } from 'express';
 import { AppDataSource } from '../data-source';
 import { Encrypt } from '../helpers/encrypt.helper';
 import { User } from '../entities';
-import { CreateUserDTO } from '../dto/user.dto';
+import { RegisterUserDTO } from '../dto/user.dto';
 
 export class UserController {
-  static async createUser(req: Request, res: Response) {
-    const { password, ...data }: CreateUserDTO = req.body;
+  static async registerUser(req: Request, res: Response) {
+    const { password, ...data }: RegisterUserDTO = req.body;
 
     const userRepository = AppDataSource.getRepository(User);
 

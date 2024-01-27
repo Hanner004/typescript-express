@@ -6,9 +6,9 @@ import {
   IsLowercase,
   IsEnum,
 } from 'class-validator';
-import { UserRoleEnum } from '../enums';
+import { RoleEnum } from '../enums';
 
-export class CreateUserDTO {
+export class RegisterUserDTO {
   @IsNotEmpty()
   @IsString()
   name: string;
@@ -23,9 +23,9 @@ export class CreateUserDTO {
   @IsString()
   @MinLength(6)
   password: string;
-  @IsEnum(UserRoleEnum)
+  @IsEnum(RoleEnum)
   @IsNotEmpty()
-  role: UserRoleEnum;
+  role: RoleEnum;
 }
 
-export class UpdateUserDTO extends CreateUserDTO {}
+export class UpdateUserDTO extends RegisterUserDTO {}

@@ -15,8 +15,8 @@ export class Encrypt {
     return bcrypt.compareSync(password, hashPassword);
   }
 
-  static async generateToken({ id, role }: Payload) {
-    const payload = { id, role };
+  static async generateToken({ id }: Payload) {
+    const payload = { id };
     const [accessToken, refreshToken] = await Promise.all([
       jwt.sign(payload, JWT_ACCESS_KEY, { expiresIn: '1d' }),
       jwt.sign(payload, JWT_REFRESH_KEY, { expiresIn: '7d' }),
