@@ -7,7 +7,11 @@ import { UserController } from '../controllers/user.controller';
 
 import { RoleEnum } from '../enums';
 
-import { RegisterUserDTO } from '../dto/user.dto';
+import {
+  RegisterUserDTO,
+  UpdateUserDTO,
+  DeleteUserDTO,
+} from '../dto/user.dto';
 
 const Router = express.Router();
 
@@ -25,6 +29,22 @@ Router.get(
   authentication,
   authorization([RoleEnum.ADMIN]),
   UserController.getUsers,
+);
+
+Router.put(
+  '/users',
+  validationMiddleware(UpdateUserDTO),
+  authentication,
+  authorization([RoleEnum.ADMIN]),
+  UserController.updateUser,
+);
+
+Router.delete(
+  '/users',
+  validationMiddleware(DeleteUserDTO),
+  authentication,
+  authorization([RoleEnum.ADMIN]),
+  UserController.deleteUser,
 );
 
 export = Router;

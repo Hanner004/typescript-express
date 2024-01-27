@@ -7,7 +7,11 @@ import { MovieController } from '../controllers/movie.controller';
 
 import { RoleEnum } from '../enums';
 
-import { CreateMovieDTO } from '../dto/movie.dto';
+import {
+  CreateMovieDTO,
+  UpdateMovieDTO,
+  DeleteMovieDTO,
+} from '../dto/movie.dto';
 
 const Router = express.Router();
 
@@ -25,6 +29,22 @@ Router.get(
   authentication,
   authorization([RoleEnum.USER, RoleEnum.ADMIN]),
   MovieController.getMovies,
+);
+
+Router.put(
+  '/movies',
+  validationMiddleware(UpdateMovieDTO),
+  authentication,
+  authorization([RoleEnum.USER, RoleEnum.ADMIN]),
+  MovieController.updateMovie,
+);
+
+Router.delete(
+  '/movies',
+  validationMiddleware(DeleteMovieDTO),
+  authentication,
+  authorization([RoleEnum.USER, RoleEnum.ADMIN]),
+  MovieController.deleteMovie,
 );
 
 export = Router;

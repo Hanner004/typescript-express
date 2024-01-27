@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsString, IsInt, IsPositive } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  IsInt,
+  IsPositive,
+  IsUUID,
+} from 'class-validator';
 
 export class CreateMovieDTO {
   @IsNotEmpty()
@@ -16,4 +22,14 @@ export class CreateMovieDTO {
   year: number;
 }
 
-export class UpdateMovieDTO extends CreateMovieDTO {}
+export class UpdateMovieDTO extends CreateMovieDTO {
+  @IsNotEmpty()
+  @IsUUID()
+  id: string;
+}
+
+export class DeleteMovieDTO {
+  @IsNotEmpty()
+  @IsUUID()
+  id: string;
+}
